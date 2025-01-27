@@ -10,4 +10,7 @@ export class Employee{
     
     @Column()
     email: string
+
+    @Column({default: false})
+    statusDelete : boolean
 }
