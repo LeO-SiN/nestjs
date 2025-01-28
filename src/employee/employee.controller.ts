@@ -1,11 +1,11 @@
-import { Controller, Delete, Get, Param } from "@nestjs/common";
+import { Body, Controller, Delete, Get, Param, Patch, Post } from "@nestjs/common";
 import { EmployeeService } from "./employee.service";
 
 @Controller("/employee")
 export class EmployeeController{
     constructor(private employeeService:EmployeeService){}
     @Get()
-    getAllEmployee(){
+    getAllEmployee(){        
         return this.employeeService.getAllEmployee();
     }
 
@@ -22,6 +22,16 @@ export class EmployeeController{
     @Delete(":id")
     deleteEmployeeById(@Param("id") id:string){
         return this.employeeService.deleteEmployeeById(parseInt(id));
+    }
+    @Post()
+    createEmployee(@Body() body:any)
+    {
+      return this.employeeService.createEmployee(body);
+    }
+    @Patch(":id")
+    updateEmployeeById(@Param("id") id:string, @Body() body:any)
+    {
+        return this.employeeService.updateEmployeeById(parseInt(id),body);
     }
 
 } 
