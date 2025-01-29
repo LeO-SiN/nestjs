@@ -1,5 +1,6 @@
 import { Body, Controller, Delete, Get, Param, Patch, Post } from "@nestjs/common";
 import { EmployeeService } from "./employee.service";
+import { EmailParam } from "src/decorator/email.decorator";
 
 @Controller("/employee")
 export class EmployeeController{
@@ -15,7 +16,7 @@ export class EmployeeController{
     }
          
     @Get("search/:email")
-    getEmployeeByEmail(@Param("email") email:string){
+    getEmployeeByEmail(@EmailParam() email:string){
     return this.employeeService.getEmployeeByEmail(email);
     }
     

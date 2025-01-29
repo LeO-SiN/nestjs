@@ -19,7 +19,9 @@ export class EmployeeService{
     }
 
     async getEmployeeByEmail(email:string){
-        return await this.employeeRepository.findOne({where:{email}});
+        const result= await this.employeeRepository.findOne({where:{email}});
+        if(result) return {data:result,message:"Successfully searched"};
+        else return {message:"Email not found"}
     }
 
     async deleteEmployeeById(id:number){
